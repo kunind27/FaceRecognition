@@ -13,7 +13,7 @@ We used an end-to-end **Deep Siamese Model** to recognize faces in the dataset. 
 #### 4. Feedforward Neural Network
 
 ## Multi-task Cascaded Convolutional Neural Networks (MTCNN)
-A pre-trained MTCNN layer has been used - implemented in `facenet_pytorch` to pre-process images by intelligently cropping only the facial region of the imaages. All those images, in which the MTCNN model could not find any faces, have simply been resized to the size `160px * 160px`.
+A pre-trained MTCNN layer has been used - implemented in `facenet_pytorch` to pre-process images by intelligently cropping only the facial region of the images. All those images, in which the MTCNN model could not find any faces, have simply been resized to the size `160px * 160px`.
 
 ## Inception ResNet V1
 A pre-trained Inception ResNet V1 layer has been used - implemented in `facenet_pytorch` to generate vector embeddings of the input cropped images. The pre-trained model has been trained on the <a href = "https://www.robots.ox.ac.uk/~vgg/data/vgg_face/">**VGGFace2 Dataset** </a> which contains 3.31 million images of 9131 subjects. We implemented the concept of **Transfer Learning** for this layer. We freezed all but the last layer of this model, to allow finetuning of the ResNet model to better fit our Dataset.
