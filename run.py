@@ -7,25 +7,28 @@ Original file is located at
     https://colab.research.google.com/drive/1mPpmUcmsYg4M5D4SoRpf69MWZvL1YFjZ
 """
 
-from google.colab import drive
-drive.mount("/content/gdrive")
+#from google.colab import drive
+#drive.mount("/content/gdrive")
 
 import torch
+import os
+
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 print(device)
 
+# REPLACE ALL OF THESE WITH THE PATHS IN YOUR SYSTEM. THIS ASSUMES A SIMILAR DIR. STRUCTURE AS THE DRIVE FILE
 PATH_OF_DATA= '/content/gdrive/"My Drive"/ES_FaceMatch_Dataset'
-!ls {PATH_OF_DATA}
-
 ROOT_DIR = 'gdrive/My Drive/ES_FaceMatch_Dataset'
 IMG_DIR = 'dataset_images'
+IMG_ROOT_DIR = os.path.join(ROOT_DIR, IMG_DIR)
 TRAIN_DIR = 'train.csv'
 TEST_DIR = 'test.csv'
 ZIP_FILE_DIR = '/content/gdrive/My Drive/images.zip'
+# Replace with your own path to model
+PATH_TO_MODEL = 'gdrive/My Drive/best_model.pth'
+CROPPED_IMG_DIR = '/content/cropped'
 
-import os 
-os.getcwd()
-
+import os
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -33,13 +36,14 @@ import matplotlib.pyplot as plt
 df_test = pd.read_csv(os.path.join(ROOT_DIR, TEST_DIR))
 df_test
 
-!pip install facenet-pytorch
+# !pip install facenet-pytorch
 
 """# Cropping the Images using MTCNN"""
 
 image_names_list = pd.unique(df_test[['image1', 'image2']].values.ravel())
 print(f"No. of unique images = {len(image_names_list)}")
 
+# Using the MTCNN Module from facenet_pytorch
 from facenet_pytorch import MTCNN
 mtcnn = MTCNN()
 
@@ -47,28 +51,27 @@ from PIL import Image
 from skimage.transform import resize
 from tqdm.notebook import tqdm
 
-IMG_ROOT_DIR = os.path.join(ROOT_DIR, IMG_DIR)
-CROPPED_IMG_DIR = '/content/cropped'
-
+# This is image pre-processing to crop the facial regions - this might take some time, but a batched version exists as well. CHeck Documentation
 for image_name in tqdm(image_names_list, desc = "No. of Images"):
     # Crop all the images present in the test set
     image = Image.open(os.path.join(IMG_ROOT_DIR,image_name)).convert("RGB")
     save_path = os.path.join(CROPPED_IMG_DIR, image_name)
     cropped_image = mtcnn(image, save_path = save_path)
 
-    # Checks if MTCNN could find the face in the image or not
+    # If MTCNN could not find a face in the image, simply resize the image
     if cropped_image is None:
         cropped_image = (resize(np.array(image), (160,160), anti_aliasing = True)*255).astype('uint8')
         cropped_image = Image.fromarray(cropped_image)
         cropped_image.save(os.path.join(CROPPED_IMG_DIR, image_name))
+        
+del mtcnn # To save GPU RAM 
 
-# Play an audio beep. Any audio URL will do.
-from google.colab import output
-output.eval_js('new Audio("https://upload.wikimedia.org/wikipedia/commons/0/05/Beep-09.ogg").play()')
+# Play an audio beep. Any audio URL will do -> to denote task is over
+#from google.colab import output
+#output.eval_js('new Audio("https://upload.wikimedia.org/wikipedia/commons/0/05/Beep-09.ogg").play()')
+print('\a')
 
 """# Using DataLoader to Load the Image"""
-
-del mtcnn
 
 from skimage import io
 import skimage.transform
@@ -361,7 +364,6 @@ def test_predict(loader):
                 torch.cuda.empty_cache()
     return predictions_list
 
-PATH_TO_MODEL = 'gdrive/My Drive/best_model.pth'
 decoder = Decoder()
 # Choose whatever GPU device number you want
 decoder.load_state_dict(torch.load(PATH_TO_MODEL))
