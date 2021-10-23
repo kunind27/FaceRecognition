@@ -18,3 +18,9 @@ A pre-trained Inception ResNet V1 layer has been used - implemented in `facenet_
 
 ## Neural Tensor Network
 The <a href="https://proceedings.neurips.cc/paper/2013/file/b337e84de8752b27eda3a12363109e80-Paper.pdf">Neural Tensor Network</a> along with the RBF Kernel similarity begin the decoder part of our model. The Neural Tensor Network has been used successfully by Bai et.al in <a href = "https://arxiv.org/pdf/1808.05689v4.pdf">**SimGNN**</a> for the problem of **Graph Similarity Computation** for calculating **Graph Edit Distances**. Additionally Neural Tensor Networks have proven their mettle in computing semantic similarity between a pair of word embeddins. This layer takes two image embeddings as an input and calculates 'K' similarity scores between the two embeddings (where K is a hyperparameter).
+
+## RBF Kernel
+The RBF Kernel similarity, is just a sanity check to supplement the similarity scores of the Neural Tensor Network. Its output is just a single value. It takes in two image embeddings and calculates the value of exponential raised to the power of the square of the L2-Norm of the differnce between the two vector embeddings.
+
+## Feedforward Neural Network
+The output from the Neural Tensor Network and the RBF Kernel are concatenated and jointly fed into the feedforward neural network layer which predicts if the two images are of the same person or not. Assuming a binary classification problem of same or not-same.
