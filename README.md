@@ -26,3 +26,6 @@ The RBF Kernel similarity, is just a sanity check to supplement the similarity s
 
 ## Feedforward Neural Network
 The output from the Neural Tensor Network and the RBF Kernel are concatenated and jointly fed into the feedforward neural network layer which predicts if the two images are of the same person or not. Assuming a binary classification problem of same or not-same.
+
+## Results
+Achieved a Training Acurracy of **93.55%**
