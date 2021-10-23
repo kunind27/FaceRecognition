@@ -3,7 +3,7 @@
 **Link to Model** - https://drive.google.com/file/d/1RBWUOFFjPXy1w-eMFN4mtQuZlm05QaaY/view?usp=sharing. Couldn't upload files more than 25 mb on github<br> 
 This Github repository contains code submitted as an entry for the AI Hackathon hosted by Analytics Club, IIT Bombay in collaboration with EarlySalary.
 
-We used an end-to-end **Deep Siamese Model** to recognize faces in the dataset. The model created was based on an **encoder-decoder paradigm**, where a **Deep-CNN** layer was used to generate vector embeddings for the input image pair, and a novel decoder layer has been used to predict the similarity between the input images.
+We used an end-to-end **Deep Siamese Model** to recognize faces in the dataset. The model created was based on an **encoder-decoder paradigm**, where a **Deep-CNN** layer was used as an **encoder** to generate vector embeddings for the input image pair, and a **novel decoder layer** has been used to predict the similarity between the input images.
 
 ## Layer Information
 #### 0. Multi-task Cascaded Convolutional Neural Networks (MTCNN)<br>
