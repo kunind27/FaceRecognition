@@ -1,6 +1,5 @@
 decorator==4.4.2
 facenet-pytorch==2.5.2
-intel-openmp==2021.4.0
 jupyter==1.0.0
 jupyter-client==5.3.5
 jupyter-console==5.2.0
