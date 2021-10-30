@@ -5,6 +5,14 @@ This Github repository contains code submitted as an entry for the **AI Hackatho
 
 We used an end-to-end **Deep Siamese Model** to recognize faces in the dataset. The model created was based on an **encoder-decoder paradigm**, where a **Deep-CNN** layer was used as an **encoder** to generate vector embeddings for the input image pair, and a **novel decoder layer** has been used to predict the similarity between the input images.
 
+## File Structure
+1. <a href = "https://github.com/kunind27/FaceRecognition/blob/main/hackathon.ipynb">hackathon.ipynb</a> - A cleaned Jupyter Notebook file, containing my implementation of the algorithm, i.e training and testing.
+2. <a href = "https://github.com/kunind27/FaceRecognition/blob/main/run.ipynb">run.ipynb</a> - Jupyter Notebook consisting of code to load the model and the data and create a `csv` file of the predictions.
+3. <a href = "https://github.com/kunind27/FaceRecognition/blob/main/run.py">run.py</a> - Python version of the executable run file. Just need to change the file directory variable values to your local system.
+4. <a href = "https://github.com/kunind27/FaceRecognition/blob/main/predictions.csv">predictions.csv</a> `csv` file containing predictions on the test set.
+5. <a href = "https://github.com/kunind27/FaceRecognition/blob/main/requirements.txt">requirements.txt</a> Text file containing system requirements to run the code.
+6. <a href = "https://github.com/kunind27/FaceRecognition/blob/main/work_summary.pdf">work_summary.pdf</a> PDF File containing summary of the work done and detailed information about the problem modelling, the layers used and the hyperparameters.
+
 ## Problem Modelling
 We modelled the problem using a Siamese Network paradigm. We took a pair of images, and passed them through the same network (that is two different networks with the same architecture with weight sharing), embedded both of them separately and tried to get a **similarity probability** as an output using the Softmax function. This modelling seemed very natural, given the format of the training data.
 
