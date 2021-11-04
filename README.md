@@ -45,3 +45,4 @@ The output from the Neural Tensor Network and the RBF Kernel are concatenated an
 
 ## Results
 The model was trained on **Google Colab's Free GPU** Runtime. The model achieved a Training Acurracy of **93.55%**
+The model obtained a Test Set Accuracy of **92.88%**
