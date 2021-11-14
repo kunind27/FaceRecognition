@@ -1,7 +1,7 @@
 # FaceRecognition
 
 **Link to Model** - https://drive.google.com/file/d/1RBWUOFFjPXy1w-eMFN4mtQuZlm05QaaY/view?usp=sharing.<br>Couldn't upload files more than 25 mb on Github.<br> 
-This Github repository contains code submitted as an entry by **Team Nightwing** for the **AI Hackathon** hosted by Analytics Club, IIT Bombay in collaboration with EarlySalary.
+This Github repository contains code submitted as an entry by **Team Nightwing** for the **AI Hackathon** hosted by Analytics Club, IIT Bombay in collaboration with EarlySalary. Our model and technique **placed second** in the hackathon.
 
 We used an end-to-end **Deep Siamese Model** to recognize faces in the dataset. The model created was based on an **encoder-decoder paradigm**, where a **Deep-CNN** layer was used as an **encoder** to generate vector embeddings for the input image pair, and a **novel decoder layer** has been used to predict the similarity between the input images.
 
